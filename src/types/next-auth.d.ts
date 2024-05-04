@@ -21,6 +21,6 @@ declare module "next-auth" {
       accessToken?: string;
       name?: string;
       id?: number;
-    } 
+    };
   }
 }
