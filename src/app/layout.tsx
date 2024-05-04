@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import { NextAuthProvider } from "@/providers/nextAuthProvider";
 import { Inter } from "next/font/google";
+import Header from "@/components/header";
 import "./globals.css";
+import Providers from "@/providers/Provider";
+import { Footer } from "@/components/footer";
+import { Catalog } from "@/components/catalog";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +20,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <NextAuthProvider>
+      <html lang="en">
+        <Providers>
+          <body className={inter.className}>
+            <header className="md:py-6 md:px-[50px] p-4">
+              <Header />
+            </header>
+            <main className="bg-[#F6F8FA] ">
+            {children}
+            </main>
+            <footer className="md:px-[50px] md:py-8 bg-white">
+              <Footer />
+            </footer>
+          </body>
+        </Providers>
+      </html>
+    </NextAuthProvider>
   );
 }
